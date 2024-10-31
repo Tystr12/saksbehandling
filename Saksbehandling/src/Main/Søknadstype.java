@@ -1,12 +1,14 @@
 package Main;
 
-public enum Type {
+public enum Søknadstype {
+	// Det er mulig å legge til flere søknadstyper
 	PENGER("Penger"), 
 	TILATELSE("Tilatelse");
 	
+	
 	private final String beskrivelse;
 
-	Type(String beskrivelse) {
+	Søknadstype(String beskrivelse) {
 		this.beskrivelse = beskrivelse;
 	}
 	

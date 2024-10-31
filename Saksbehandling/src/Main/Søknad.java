@@ -3,36 +3,24 @@ package Main;
 import java.util.Random;
 
 public class Søknad {
-	private String id;
-	private String søker;
-	private String organisasjon;
-	private boolean harOrganisasjon;
-	private Type type;
-	
-	// Constructor for ingen organisasjon
-	Søknad(String søker, Type type) {
-		this.type = type;
-		this.id = genererId();
-		this.søker = søker;
-		this.organisasjon = "";
-		this.harOrganisasjon = false;
-	}
+
+	protected String id;
+	protected String søker;
+	protected String organisasjon;
+	protected String søknadsType;
 	
 	// Constructor for søknad knyttet til organisasjon
-	Søknad(String søker, String organisasjon, Type type) {
-		this.type = type;
+	Søknad(String søker, String organisasjon) {
+		this.søknadsType = "TILATELSE";
 		this.id = genererId();
 		this.søker = søker;
 		this.organisasjon = organisasjon;
-		if(!this.organisasjon.equals("")) {
-			this.harOrganisasjon = true;
-		}
 	}
 	
 	private String genererId() {
 	// genererer en unik id 
 		Random r = new Random();
-		String id = this.type.toString();
+		String id = this.getSøknadsType();
 		for(int i = 0; i < 9; i++) {
 			int temp = r.nextInt(10);
 			String m = Integer.toString(temp);
@@ -55,7 +43,7 @@ public class Søknad {
 		this.søker = søker;
 	}
 	public String getOrganisasjon() {
-		if(this.harOrganisasjon == false) {
+		if(this.organisasjon == "") {
 			return "Denne søknaden er ikke knyttet til en organisasjon";
 		}
 		return organisasjon;
@@ -63,16 +51,19 @@ public class Søknad {
 	public void setOrganisasjon(String organisasjon) {
 		this.organisasjon = organisasjon;
 	}
-	public boolean isHarOrganisasjon() {
-		return harOrganisasjon;
-	}
-	public void setHarOrganisasjon(boolean harOrganisasjon) {
-		this.harOrganisasjon = harOrganisasjon;
-	}
+	
 	@Override
 	public String toString() {
-		return "Søknad [id=" + id + ", søker=" + søker + ", organisasjon=" + organisasjon + ", harOrganisasjon="
-				+ harOrganisasjon + ", type=" + type + "]";
+		return "Søknad [id=" + id + ", søker=" + søker + ", organisasjon=" + organisasjon + ", søknadsType="
+				+ søknadsType + "]";
+	}
+
+	public String getSøknadsType() {
+		return søknadsType;
+	}
+
+	public void setSøknadsType(String søknadsType) {
+		this.søknadsType = søknadsType;
 	}
 	
 
